@@ -4,6 +4,23 @@ import { Points, PointMaterial, useScroll, ScrollControls, Scroll, MeshDistortMa
 import * as THREE from 'three';
 import { Overlay } from './Overlay';
 
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      group: any;
+      mesh: any;
+      sphereGeometry: any;
+      meshBasicMaterial: any;
+      meshStandardMaterial: any;
+      pointLight: any;
+      ambientLight: any;
+      ringGeometry: any;
+      color: any;
+      [elemName: string]: any;
+    }
+  }
+}
+
 // -----------------------------------------------------------------------------
 // 1. Star Field & Environment
 // -----------------------------------------------------------------------------

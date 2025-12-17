@@ -11,10 +11,10 @@ const IconMap: Record<string, LucideIcon> = {
   link: LinkIcon
 };
 
-// Section now takes a 'page' index to position itself absolutely
+// Section container with pointer-events-none to allow scrolling through empty spaces
 const Section = ({ children, page, className = "" }: { children?: React.ReactNode; page: number; className?: string }) => (
   <section 
-    className={`absolute top-0 left-0 w-full h-screen flex flex-col items-center justify-center p-8 overflow-hidden ${className}`}
+    className={`absolute top-0 left-0 w-full h-screen flex flex-col items-center justify-center p-8 overflow-hidden pointer-events-none ${className}`}
     style={{ top: `${page * 100}vh` }}
   >
     {children}
@@ -238,7 +238,7 @@ export const Overlay: React.FC = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-center"
+          className="text-center pointer-events-auto"
         >
           <h1 className="text-6xl md:text-8xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-blue-300 to-purple-600 mb-6 drop-shadow-2xl">
             {HERO_TEXT.title}
@@ -254,7 +254,7 @@ export const Overlay: React.FC = () => {
 
       {/* Profile Section (Page 1) */}
       <Section page={1}>
-        <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-black/40 backdrop-blur-lg p-10 rounded-3xl border border-white/10 shadow-2xl">
+        <div className="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center bg-black/40 backdrop-blur-lg p-10 rounded-3xl border border-white/10 shadow-2xl pointer-events-auto">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -309,7 +309,7 @@ export const Overlay: React.FC = () => {
             {SERVICES.map((service, index) => {
               const Icon = IconMap[service.icon];
               return (
-                <div key={index} className="p-6 bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-xl hover:border-blue-500 transition-colors duration-300 group">
+                <div key={index} className="p-6 bg-gradient-to-br from-gray-900 to-black border border-gray-800 rounded-xl hover:border-blue-500 transition-colors duration-300 group pointer-events-auto cursor-default">
                   <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-blue-500/20 transition-colors">
                     <Icon className="w-6 h-6 text-blue-400" />
                   </div>
